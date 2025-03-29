@@ -77,12 +77,20 @@ def main():
         orbit.set_data(x[:i], y[:i])
         return sun, earth, orbit
 
-    # Creación de la animación
-    ani = animation.FuncAnimation(fig, animate, init_func=init, frames=n_steps, blit=True, repeat=False)
+    # Botón para iniciar la animación
+    start_button = st.button("Iniciar Movimiento")
 
-    # Mostrar la animación en Streamlit
-    st.title('Simulación de la Órbita de la Tierra alrededor del Sol')
-    st.pyplot(fig)
+    # Creación de la animación solo si se presiona el botón
+    if start_button:
+        ani = animation.FuncAnimation(fig, animate, init_func=init, frames=n_steps, blit=True, repeat=False)
+
+        # Mostrar la animación en Streamlit
+        st.title('Simulación de la Órbita de la Tierra alrededor del Sol')
+        st.pyplot(fig)
+    else:
+        # Mostrar la figura estática antes de iniciar la animación
+        st.title('Simulación de la Órbita de la Tierra alrededor del Sol')
+        st.pyplot(fig)
 
 # Ejecutar la función main
 if __name__ == "__main__":
