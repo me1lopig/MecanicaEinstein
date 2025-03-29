@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import streamlit as st
 
-
 def main():
     # Constantes
     G = 6.67430e-11
@@ -15,7 +14,7 @@ def main():
     v0 = 2.978e4
     theta0 = 0
 
-    # Parámetros de la simulación (ajustables con Streamlit)        
+    # Parámetros de la simulación (ajustables con Streamlit)
     dt = st.sidebar.slider("Tamaño del paso de tiempo (días)", 0.1, 3.0, 1.0) * 3600 * 24
     t_total = 365.25 * 24 * 3600
     n_steps = int(t_total / dt)
@@ -67,7 +66,7 @@ def main():
 
     # Función de inicialización para la animación
     def init():
-        sun.set_data(0, 0)
+        sun.set_data([0], [0])  # Pasar listas con un solo elemento
         earth.set_data([], [])
         orbit.set_data([], [])
         return sun, earth, orbit
@@ -85,6 +84,6 @@ def main():
     st.title('Simulación de la Órbita de la Tierra alrededor del Sol')
     st.pyplot(fig)
 
-
+# Ejecutar la función main
 if __name__ == "__main__":
     main()
